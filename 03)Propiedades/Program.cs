@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+
 
 namespace _03_Propiedades
 {
@@ -19,7 +19,7 @@ namespace _03_Propiedades
             conta.Depositar(-1000.00m);
 
             //utilizando metodo acessador
-            conta.setSaldo(1000.00m);
+            conta.saldo(1000.00m);
             //Console.WriteLine($"Saldo atual. {conta.getSaldo():c2}");
             conta.imprimirSaldo();
             while (true)
@@ -68,6 +68,19 @@ namespace _03_Propiedades
         //tranformar a conta saldo com acesso privado
         // public decimal saldo;
         private decimal saldo;
+
+        private decimal saldo // declaração propia para versão 8.0 ou superior
+        {
+            get { return saldo; }
+            set
+            {
+                this.Depositar(value);
+            }
+
+            
+        }
+
+
         public Conta(string numero)
         {
             this.numero = numero;
@@ -85,15 +98,15 @@ namespace _03_Propiedades
         }
 
 
-        public decimal getSaldo()
-        {
-            return saldo;
-        }
+       // public decimal getSaldo()
+       // {
+       //     return saldo;
+       // }
 
-        public void setSaldo(decimal saldo)
-        {
-            this.Depositar(saldo);
-        }
+      //  public void setSaldo(decimal saldo)
+       // {
+       //     this.Depositar(saldo);
+       // }
 
         public string getNumero()
         {
