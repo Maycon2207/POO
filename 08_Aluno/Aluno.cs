@@ -5,7 +5,7 @@ namespace _08_Aluno
 {
     internal class Aluno
     {
-        private string nome;
+        private string nome;  //usando private para não permitir alteração direta
         public string Nome { get {return nome; } }
 
         private int idade;
@@ -21,7 +21,7 @@ namespace _08_Aluno
         public double Nota1 { get; set; }       
         public double Nota2 { get; set; }
         public double Media { get { return (Nota1 + Nota2) / 2;  }  }
-        public string Situacao { get { return (Media >= 6) ? "Aprovado" : "Reprovado"; } }
+        public string Situacao { get { return (Media >= 6) ? "Aprovado" : "Reprovado"; } } //para aparecer se foi aprovado ou reprovado
         public Aluno(string nome)
         {
             this.nome = nome;

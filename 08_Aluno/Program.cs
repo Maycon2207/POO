@@ -14,16 +14,17 @@ namespace _08_Aluno
             string nome = Console.ReadLine();
             Aluno aluno = new Aluno(nome);
 
-            Console.Write("Informe a Idade: ");
+            Console.Write("Digite sua Idade: ");
             aluno.Idade = int.Parse(Console.ReadLine());
 
-            Console.Write("Informe a 1ª Nota: ");
+            Console.Write("Digite a 1ª Nota: ");
             aluno.Nota1 = double.Parse(Console.ReadLine());
             
-            Console.Write("Informe a 2ª Nota: ");
+            Console.Write("Digite a 2ª Nota: ");
             aluno.Nota2 = double.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Nome: {aluno.Nome} Idade {aluno.Idade} 1º Nota: {aluno.Nota1} 2ª Nota: {aluno.Nota2} Média: {aluno.Media} Situação: {aluno.Situacao}");
+            Console.WriteLine($"Nome: {aluno.Nome} Idade {aluno.Idade} 1º Nota: {aluno.Nota1} 2ª Nota: " +
+                $"{aluno.Nota2} Média: {aluno.Media} Situação: {aluno.Situacao}");
         }
     }
 }
