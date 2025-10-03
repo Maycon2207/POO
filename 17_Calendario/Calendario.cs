@@ -56,7 +56,7 @@ namespace _17_Calendario
 
             Console.WriteLine("DOM\tSEG\tTER\tQUA\tQUI\tSEX\tSAB");
 
-            Feriado[] diasFeriados = RetornaFeriados();
+            List<Feriado> diasFeriados = RetornaFeriados().ToList();
             //bool ehFeriado;
 
             //impressão do calendário
@@ -79,8 +79,12 @@ namespace _17_Calendario
 
                         //if (diasFeriados.Contains(calendario[semana, diaSemana]) || diaSemana == 0)
                         //if (ehFeriado || diaSemana == 0)
-                        if (diasFeriados.Any(feriado => feriado != null && feriado.Dia == calendario[semana, diaSemana]) || diaSemana == 0)
+                        // Verificando se é um feriado ou se o dia da semana é domingo
+                        if (diasFeriados.Any(feriado => feriado != null && feriado.Dia == calendario[semana, diaSemana]) || (DiaSemana)diaSemana == (int)DiaSemana.Domingo)
+                        {
                             Console.ForegroundColor = ConsoleColor.Red;
+                        }
+
 
                         Console.Write(calendario[semana, diaSemana].ToString("D2") + "\t");
 
@@ -92,23 +96,22 @@ namespace _17_Calendario
                     }
                 }
                 Console.WriteLine();
-            }
 
-            Console.Write("\nFeriados: ");
-            /*for (int i = 0; i < diasFeriados.Length; i++)
-            {
-                if (diasFeriados[i] > 0)
-                {
-                    Console.Write($"{diasFeriados[i].ToString("D2")}\t");
-                }
-            }*/
+            
+            }
+            diasFeriados.Sort();
             foreach (Feriado diaFeriado in diasFeriados)
             {
                 if (diaFeriado != null)
-                    Console.Write($"{diaFeriado.Dia:D2}-{diaFeriado.Descricao} \t");
-
+                    Console.WriteLine($"{diaFeriado.Dia:02}-{diaFeriado.Descricao} \t");
             }
 
+
+
+            Console.Write("\nFeriados: ");
+
+
+           
         }
 
         private Feriado[] RetornaFeriados()
@@ -117,7 +120,8 @@ namespace _17_Calendario
 
            // if (mes == 1)
                 feriados.Add(new Feriado(1, "Confraternização Universal"));
-            else if (mes == Mes.Janeiro)
+
+            if (mes == Mes.Janeiro)
             {
                 feriados.Add(new Feriado(4, "Aniversário da Cidade"));
                 feriados.Add(new Feriado(21, "Tiradentes"));
@@ -138,7 +142,7 @@ namespace _17_Calendario
                 feriados.Add(new Feriado(25, "Natal"));
             }
 
-            DateTime domingoDePascoa = DomingoDePascoa();
+            DateTime domingoDePascoa = domingoDePascoa();
             DateTime carnaval = domingoDePascoa.AddDays(-47);
             DateTime sextaFeiraSanta = domingoDePascoa.AddDays(-2);
             DateTime corpusChristi = domingoDePascoa.AddDays(60);
