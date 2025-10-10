@@ -23,6 +23,13 @@ namespace _21_ConversaoNumeroComExecao
             {
                 Console.WriteLine("Valor inválido! Digite apenas números inteiros.");
             }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Não pode ser infomado valores nulos.");
+
+            }
+
+
 
             Console.WriteLine("Programa finalizado!");
         }
