@@ -10,7 +10,7 @@ namespace _18_ValidaCPF
 {
     public class CPF : IDocumento
     {
-        public string Numero { get; private set; }
+        public string Numero { get;  }
 
         public CPF(string numero)
         {
